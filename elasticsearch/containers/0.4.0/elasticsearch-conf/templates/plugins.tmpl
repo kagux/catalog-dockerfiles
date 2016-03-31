@@ -1,2 +1,2 @@
-{{if exists "plugins"}}{{range $dir := ls "plugins"}}{{getv (printf "%s/%s" "plugins" $dir)}}
+{{if exists "plugins"}}{{range gets "plugins"}}{{.Key}}
 {{end}}{{end}}
