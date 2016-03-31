@@ -1,2 +1,2 @@
-{{if exists "/elasticsearch/plugins"}}{{range $dir := ls "/elasticsearch/plugins"}}{{getv (printf "%s/%s" "/elasticsearch/plugins" $dir)}}
+{{if exists "plugins"}}{{range $dir := ls "plugins"}}{{getv (printf "%s/%s" "plugins" $dir)}}
 {{end}}{{end}}

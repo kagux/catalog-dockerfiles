@@ -5,7 +5,6 @@ ADD ./templates /etc/confd/templates
 ADD ./run.sh /opt/rancher/bin/
 
 VOLUME /usr/share/elasticsearch/config
-VOLUME /data/confd
 VOLUME /opt/rancher/bin
 
 ENTRYPOINT ["/confd"]

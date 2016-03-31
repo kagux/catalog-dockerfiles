@@ -1,6 +1,6 @@
 [template]
 src = "plugins.tmpl"
-dest = "/data/confd/plugins.txt"
+dest = "/usr/share/elasticsearch/config/plugins.txt"
 keys = [
-  "/elasticsearch/plugins/",
+  "/self/service/metadata/elasticsearch"
 ]
