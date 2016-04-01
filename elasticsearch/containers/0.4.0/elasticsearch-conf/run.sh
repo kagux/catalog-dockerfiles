@@ -14,9 +14,10 @@ done
 
 if [ -f "$PLUGIN_TXT" ]; then
     for plugin in $(<"${PLUGIN_TXT}"); do
-        if [ -d $PLUGINS_PATH/$plugin ]; then
+        if [ -d "$PLUGINS_PATH/$plugin" ]; then
           echo "Plugin '$plugin' is already installed, skipping...\n"
         else
+          echo "Plugin '$plugin' is missing...\n"
           $PLUGIN_BIN install $plugin
         fi
     done
