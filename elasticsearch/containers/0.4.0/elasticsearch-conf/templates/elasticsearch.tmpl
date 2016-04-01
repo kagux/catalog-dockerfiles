@@ -8,6 +8,9 @@ network.host: 0
 bootstrap.mlockall: true
 discovery.zen.ping.multicast.enabled: false
 
+#v1
+{{getvs "/self/stack/services"}}
+
 discovery.zen.ping.unicast.hosts:
 {{range getvs "/self/stack/services"}}
   {{printf "/services/%s/containers" .}}
