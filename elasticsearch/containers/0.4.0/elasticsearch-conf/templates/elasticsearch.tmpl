@@ -12,9 +12,11 @@ discovery.zen.ping.unicast.hosts:
 {{range getvs "/self/stack/services"}}
   {{range getvs (printf "/services/%s/containers" .)}}
     {{$containerKey := printf "/containers/%s" .}}
+    # {{ $containerKey }}
     {{$label := (printf "%s/labels/elasticsearch.master" $containerKey | getv)}}
+    # {{ $label }}
     {{if eq $label "true"}}
-      {{printf "%s/primary_ip" $containerKey | getv}}
+      - {{printf "%s/primary_ip" $containerKey | getv}}
     {{end}}
   {{end}}
 {{end}}
