@@ -9,11 +9,11 @@ bootstrap.mlockall: true
 discovery.zen.ping.multicast.enabled: false
 
 #v1
-{{getvs "/self/stack/services"}}
+#{{getvs "/self/stack/services"}}
 
 discovery.zen.ping.unicast.hosts:
 {{range getvs "/self/stack/services"}}
-  {{printf "/services/%s/containers" .}}
+#  {{printf "/services/%s/containers" .}}
   {{range getvs (printf "/services/%s/containers" .)}}
     {{$containerKey := printf "/containers/%s" .}}
     # {{ $containerKey }}
