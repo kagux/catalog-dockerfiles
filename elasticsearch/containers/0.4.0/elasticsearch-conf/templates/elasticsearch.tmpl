@@ -1,4 +1,6 @@
 #datanodei Placed by confd. Do not hand edit.
+network.host: 0
+
 {{range ls "/self/service/metadata/elasticsearch/yml"}}
 {{.}}: {{getv (printf "/self/service/metadata/elasticsearch/yml/%s" .)}}{{end}}
 
