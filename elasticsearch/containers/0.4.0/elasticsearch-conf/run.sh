@@ -3,14 +3,22 @@
 set -e
 
 PLUGIN_TXT=${PLUGIN_TXT:-/usr/share/elasticsearch/config/plugins.txt}
+PLUGINS_PATH="/usr/share/elasticsearch/plugins"
+PLUGIN_BIN="/usr/share/elasticsearch/bin/plugin"
+ELASTIC_CONFIG="/usr/share/elasticsearch/config/elasticsearch.yml"
 
-while [ ! -f "/usr/share/elasticsearch/config/elasticsearch.yml" ]; do
+
+while [ ! -f $ELASTIC_CONFIG ]; do
     sleep 1
 done
 
 if [ -f "$PLUGIN_TXT" ]; then
     for plugin in $(<"${PLUGIN_TXT}"); do
-        /usr/share/elasticsearch/bin/plugin install $plugin
+        if [ -d $PLUGINS_PATH/$plugin ]; then
+          echo "Plugin '$plugin' is already installed, skipping...\n"
+        else
+          $PLUGIN_BIN install $plugin
+        fi
     done
 fi
 
