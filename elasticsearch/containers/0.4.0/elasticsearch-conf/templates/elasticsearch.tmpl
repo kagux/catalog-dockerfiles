@@ -2,18 +2,18 @@
 network.host: 0
 
 {{range ls "/self/service/metadata/elasticsearch/yml"}}
-{{.}}: {{printf "/self/service/metadata/elasticsearch/yml/%s" . | getv-}}
+{{.}}: {{printf "/self/service/metadata/elasticsearch/yml/%s" . | getv}}
 {{end}}
 
 bootstrap.mlockall: true
 discovery.zen.ping.multicast.enabled: false
 
 discovery.zen.ping.unicast.hosts:
-{{range getvs "/self/stack/services"-}}
-  {{-range getvs (printf "/services/%s/containers" .)-}}
-    {{-$containerKey := printf "/containers/%s" .-}}
-    {{-printf "%s/labels/elasticsearch.master" $containerKey | getv | if eq "true"-}}
-      {{-printf "%s/primary_ip" $containerKey | getv}}
-    {{-end-}}
-  {{-end-}}
-{{-end}}
+{{range getvs "/self/stack/services"}}
+  {{range getvs (printf "/services/%s/containers" .)}}
+    {{$containerKey := printf "/containers/%s" .}}
+    {{printf "%s/labels/elasticsearch.master" $containerKey | getv | if eq "true"}}
+      {{printf "%s/primary_ip" $containerKey | getv}}
+    {{end}}
+  {{end}}
+{{end}}
