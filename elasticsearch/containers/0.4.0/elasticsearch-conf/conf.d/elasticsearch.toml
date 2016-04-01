@@ -4,6 +4,6 @@ dest = "/usr/share/elasticsearch/config/elasticsearch.yml"
 keys = [
   "/self/service",
   "/self/stack",
-  "services",
+  "/services",
   "/containers",
 ]
