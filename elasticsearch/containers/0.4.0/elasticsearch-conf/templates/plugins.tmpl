@@ -1,2 +1,2 @@
-{{if exists "plugins"}}{{range gets "plugins"}}{{.Key}}
-{{end}}{{end}}
+{{range ls "/self/service/metadata/elasticsearch/plugins"}}{{.}}
+{{end}}
