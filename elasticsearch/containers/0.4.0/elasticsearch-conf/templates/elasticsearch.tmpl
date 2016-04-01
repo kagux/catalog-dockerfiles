@@ -5,7 +5,7 @@
 bootstrap.mlockall: true
 discovery.zen.ping.multicast.enabled: false
 
-{{with get "/self/service/name"}}{{if eq "elasticsearch-masters" .Value}}
+{{with get "/self/service/metadata/elasticsearch/yml/node.master"}}{{if eq "true" .Value}}
 discovery.zen.ping.unicast.hosts: {{range ls "/self/service/containers"}}{{ $containerName := getv (printf "/self/service/containers/%s" .)}}
   - {{getv (printf "/containers/%s/primary_ip" $containerName)}}{{end}}
 {{else}}
