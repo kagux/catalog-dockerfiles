@@ -10,5 +10,6 @@ discovery.zen.ping.multicast.enabled: false
 
 discovery.zen.ping.unicast.hosts:
 {{if exists "/self/container/labels/elasticsearch.master" | not}}
-      - es-masters
+      # masters link
+      #- es-masters
 {{end}}
