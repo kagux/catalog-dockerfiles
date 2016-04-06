@@ -9,12 +9,6 @@ bootstrap.mlockall: true
 discovery.zen.ping.multicast.enabled: false
 
 discovery.zen.ping.unicast.hosts:
-{{range getvs "/self/stack/services/*"}}
-  {{range getvs (printf "/services/%s/containers/*" .)}}
-    {{$containerKey := printf "/containers/%s" .}}
-    {{if exists (printf "%s/labels/elasticsearch.master" $containerKey)}}
-      # {{printf "%s/service_name" $containerKey | getv}}
-      - {{printf "%s/primary_ip" $containerKey | getv}}
-    {{end}}
-  {{end}}
+{{if exists "/self/container/labels/elasticsearch.master" | not}}
+      - es-masters
 {{end}}
